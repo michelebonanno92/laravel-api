@@ -13,7 +13,8 @@ class Project extends Model
     protected $fillable = [
         'name',
         'slug',
-        'type_id'
+        'type_id',
+        'file'
     ];
 
     // Relationships
@@ -26,7 +27,8 @@ class Project extends Model
 
     public function technologies()
     {
-        return $this->belongsToMany(Technology::class);
+        return $this->belongsToMany(Technology::class)
+                    ->withTimestamps();
         // non c'è bisogno di importarmi il model Type perchè insieme al Model Project si trovano nello stesso namespace
     }
   

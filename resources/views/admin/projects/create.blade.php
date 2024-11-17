@@ -7,7 +7,8 @@
   Crea Progetto
 </h1>
 
-<form action="{{ route('admin.projects.store')}}" method="POST">
+<form action="{{ route('admin.projects.store')}}" method="POST" enctype="multipart/form-data" >
+  {{-- enctype="multipart/form-data" serve per inviare i file in un form --}}
   @csrf
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
@@ -41,6 +42,30 @@
         Errore Tipologia: {{ $message }}
       </div>
     @enderror
+  </div>
+  <div class="mb-3">
+    <label for="file" class="form-label">Immagine</label>
+    <input type="file" class="form-control" id="file"  name="file" required >
+    @error('file')
+    <div class="alert alert-danger mt-2">
+      Errore immagine: {{ $message }}
+    </div>
+  @enderror
+  </div>
+
+
+  <div class="mb-3">
+      <div>
+        <label for="type_id" class="form-label">tecnologie</label>
+      </div>
+      @foreach ($technologies as $technology)
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}" name="technologies[]" value="{{ $technology->id }}">
+          <label class="form-check-label" for="technology-{{ $technology->id }}">
+            {{ $technology->name }}
+          </label>
+        </div>
+      @endforeach
   </div>
 
   
