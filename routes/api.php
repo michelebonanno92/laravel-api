@@ -23,6 +23,9 @@ Route::name('api.')->group(function () {
     });
     
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+
+    Route::get('/projects/{slug}', [ProjectController::class, 'show'])->name('projects.show');
+
 });
 
 
