@@ -15,23 +15,23 @@ class ProjectController extends Controller
         // Esempio filtraggio per title
         // $titleParam = request()->input('title');
         // if(isset($titleParam)) {
-        //     $project = $project->where('title', 'LIKE', '%'.$titleParam.'%);
+        //     $project = $project->where('title', 'LIKE', '%'.$titleParam.'%');
         // }
 
         // $projects = Project::get();
         // $projects = Project::paginate(3);
      
-        $projects = Project::with('type', 'technologies') // Eager loading con il with
-                            ->paginate(3);                // Paginazione
+        $projects = Project::with('type', 'technologies'); // Eager loading con il with
+
+        $projects = $projects->paginate(3);              // Paginazione
 
         // serializzazione con il json
         return response()->json([
         'success' => true,
         'code' => 200,
-        'message' => 'OK',
-        'data' => [
-            'projects' => $projects
-        ],
+        // 'message' => 'OK',
+        'projects' => $projects
+        ,
         // richiamato e utilizzato il Model Project per avere nella risposta per avere tutti i project esistente nel db come risposta in formato json
 
         ]);
@@ -47,10 +47,7 @@ class ProjectController extends Controller
                 'success' => true,
                 'code' => 200,
                 'message' => 'OK',
-                'data' => [
-                    'project' => $project
-                ],
-        
+                'projects' => $projects,
                 ]);
         }
         else {
