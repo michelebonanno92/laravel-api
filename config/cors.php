@@ -16,23 +16,26 @@ return [
     */
 
 
-    'paths' => ['
-        api/*', 
+    // 'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [
+        'api/*', 
         'sanctum/csrf-cookie'
     ],
+
     // il config\cors fa riferimento solo o a chiamata api o sanctum/csrf-cookie
 
     'allowed_methods' => ['*'],
     // esempio POST ecc...
 
+    // 'allowed_origins' => ['*'],
+   
 
     // co questo selezioniamo solo delle specifiche origini 
     'allowed_origins' => [
-       env('FRONTEND_URL','http://localhost:5173',)
-    //    'http://localhost:5173' oppure singolo
-        
-         // '*' = tutti
-        // oppure che è la stessa cosa
+       env('FRONTEND_URL', 'http://localhost:5173')
+    // //    'http://localhost:5174'
+    //      '*'
+    //     // oppure che è la stessa cosa
         // 'http://121.0.0.1:5173',
 
     ],
